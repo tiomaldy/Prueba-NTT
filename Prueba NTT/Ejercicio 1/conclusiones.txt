@@ -1,0 +1,6 @@
+El desarrollo de un test automatizado nos ayuda a ahorrar  tiempo y dinero para la empresa,la realizacion de esta prueba
+ayudara que en pocos minutos una prueba a la pagina Demoblaze nos demuestre que funcione de manera correcta para un usuario,
+ademas de la creacion de los dos casos de usos que tambien fueron automatizados ,se realizo un excel con la descripcion 
+de estos dos casos de uso,que ayudan a visualizar de mejor manera al tester o al programador lo que se realizo durante 
+las pruebas de calidad.
+  

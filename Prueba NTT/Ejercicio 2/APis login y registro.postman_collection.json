@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "5c71dcdc-23be-4f47-9eb9-0fca44431b32",
+		"name": "APis login y registro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10308517"
+	},
+	"item": [
+		{
+			"name": "RegistroUsuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El api funciona\", function() {\r",
+							"    pm.expect(pm.response.code).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Se creo el usuario sin problema.\", function() {\r",
+							"    let body =  pm.response.json();\r",
+							"    pm.expect(body).to.eq('');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"pepitopalotes45456\",\r\n    \"password\": \"gustavito1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/signup",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear usuario existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El api funciona\", function() {\r",
+							"    pm.expect(pm.response.code).to.eq(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verifica si el usuario existe\", function(){\r",
+							"    let body = pm.response.json();\r",
+							"    console.log(body.errorMessage);\r",
+							"    pm.expect(body.errorMessage).to.eql(\"This user already exist.\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"pepitopalotes\",\r\n    \"password\": \"gustavito1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/signup",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"La api funciona\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Me retorna un token de autentificacion como usuario\", function() {\r",
+							"    let body = pm.response.json();\r",
+							"    pm.expect(body).includes(\"Auth_token\");\r",
+							"    console.log(body)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"pepitopalotes\",\r\n    \"password\": \"gustavito1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Retorna que el usuario no existe\", function(){\r",
+							"    let body = pm.response.json();\r",
+							"    console.log(body.errorMessage);\r",
+							"    pm.expect(body.errorMessage).to.eql(\"User does not exist.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"pepitopalotes2\",\r\n    \"password\": \"gustavito1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.demoblaze.com/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"demoblaze",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "apiurl",
+			"value": "https://api.demoblaze.com/signup"
+		}
+	]
+}
